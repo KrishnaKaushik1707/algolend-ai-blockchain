@@ -1,60 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Form, Badge } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import LoanCard from '../components/LoanCard';
 import { Search, SlidersHorizontal } from 'lucide-react';
 
 const LoanMarketplace = () => {
-  // Mock Data
-  const marketplaceLoans = [
-    {
-      id: 'AL-1092',
-      amount: 4500,
-      interestRate: 8.5,
-      term: 12,
-      borrowerName: 'Sarah J.',
-      type: 'marketplace'
-    },
-    {
-      id: 'AL-1104',
-      amount: 2500,
-      interestRate: 10.2,
-      term: 6,
-      borrowerName: 'Marcus T.',
-      type: 'marketplace'
-    },
-    {
-      id: 'AL-1115',
-      amount: 10000,
-      interestRate: 7.1,
-      term: 24,
-      borrowerName: 'Emily W.',
-      type: 'marketplace'
-    },
-    {
-      id: 'AL-1120',
-      amount: 3200,
-      interestRate: 9.5,
-      term: 12,
-      borrowerName: 'David K.',
-      type: 'marketplace'
-    },
-    {
-      id: 'AL-1135',
-      amount: 1500,
-      interestRate: 11.5,
-      term: 6,
-      borrowerName: 'Jessica R.',
-      type: 'marketplace'
-    },
-    {
-      id: 'AL-1142',
-      amount: 8000,
-      interestRate: 8.0,
-      term: 24,
-      borrowerName: 'Michael B.',
-      type: 'marketplace'
+  const navigate = useNavigate();
+  const [loans, setLoans] = React.useState([]);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('algoLendUser');
+    if (!savedUser) {
+      navigate('/login');
     }
-  ];
+  }, [navigate]);
+  useEffect(() => {
+    // Initial static mock data
+    const mockLoans = [
+      { id: 'AL-1092', amount: 45000, interestRate: 8.5, term: 12, borrowerName: 'Priya P.', type: 'marketplace' },
+      { id: 'AL-1104', amount: 25000, interestRate: 10.2, term: 6, borrowerName: 'Rahul M.', type: 'marketplace' },
+      { id: 'AL-1115', amount: 100000, interestRate: 7.1, term: 24, borrowerName: 'Sneha R.', type: 'marketplace' },
+      { id: 'AL-1120', amount: 32000, interestRate: 9.5, term: 12, borrowerName: 'Vikram S.', type: 'marketplace' },
+      { id: 'AL-1135', amount: 15000, interestRate: 11.5, term: 6, borrowerName: 'Anjali T.', type: 'marketplace' },
+      { id: 'AL-1142', amount: 80000, interestRate: 8.0, term: 24, borrowerName: 'Arjun K.', type: 'marketplace' }
+    ];
+
+    const savedLoans = JSON.parse(localStorage.getItem('algoLendMarketplace')) || [];
+    setLoans([...savedLoans, ...mockLoans]);
+  }, []);
 
   return (
     <Container className="py-4">
@@ -83,7 +56,7 @@ const LoanMarketplace = () => {
       </div>
 
       <Row className="g-4">
-        {marketplaceLoans.map((loan, idx) => (
+        {loans.map((loan, idx) => (
           <Col md={6} xl={4} key={idx}>
             <LoanCard {...loan} />
           </Col>

@@ -57,13 +57,13 @@ const Register = () => {
                   <Col sm={6}>
                     <Form.Group>
                       <Form.Label className="fw-semibold small">First Name</Form.Label>
-                      <Form.Control type="text" name="firstName" placeholder="John" value={formData.firstName} onChange={handleChange} className="rounded-3" required />
+                      <Form.Control type="text" name="firstName" placeholder="Rahul" value={formData.firstName} onChange={handleChange} className="rounded-3" required />
                     </Form.Group>
                   </Col>
                   <Col sm={6}>
                     <Form.Group>
                       <Form.Label className="fw-semibold small">Last Name</Form.Label>
-                      <Form.Control type="text" name="lastName" placeholder="Doe" value={formData.lastName} onChange={handleChange} className="rounded-3" required />
+                      <Form.Control type="text" name="lastName" placeholder="Sharma" value={formData.lastName} onChange={handleChange} className="rounded-3" required />
                     </Form.Group>
                   </Col>
                 </Row>
@@ -82,8 +82,8 @@ const Register = () => {
                 <h6 className="fw-bold mb-3 text-muted">Financial Information</h6>
 
                 <Form.Group className="mb-3">
-                  <Form.Label className="fw-semibold small">Annual Income ($)</Form.Label>
-                  <Form.Control type="number" name="income" placeholder="50000" value={formData.income} onChange={handleChange} className="rounded-3" required />
+                  <Form.Label className="fw-semibold small">Annual Income (₹)</Form.Label>
+                  <Form.Control type="number" name="income" placeholder="500000" value={formData.income} onChange={handleChange} className="rounded-3" required />
                 </Form.Group>
 
                 <Form.Group className="mb-4">

@@ -15,7 +15,7 @@ const Login = () => {
     const existingUser = localStorage.getItem('algoLendUser');
     if (!existingUser) {
       const mockUser = {
-        name: 'Demo User',
+        name: 'Rahul Sharma',
         email: email,
         memberSince: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
         phone: 'Not provided',

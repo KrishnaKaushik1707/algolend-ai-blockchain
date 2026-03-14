@@ -1,44 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import UserProfileCard from '../components/UserProfileCard';
 import CreditScoreCard from '../components/CreditScoreCard';
 import LoanCard from '../components/LoanCard';
 
 const Dashboard = () => {
+  const [userLoans, setUserLoans] = useState([]);
   const [user, setUser] = useState({
-    name: 'Sarah Jenkins',
+    name: 'Priya Patel',
     memberSince: 'Oct 2023',
-    email: 'sarah.j@example.com',
-    phone: '+1 (555) 123-4567',
-    location: 'Austin, TX'
+    email: 'priya.p@example.com',
+    phone: '+91 98765 43210',
+    location: 'Mumbai, MH'
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if user is stored in localStorage
     const savedUser = localStorage.getItem('algoLendUser');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
+    } else {
+      navigate('/login');
     }
-  }, []);
 
-  const myLoans = [
-    {
-      id: 'AL-9284',
-      amount: 4500,
-      interestRate: 8.5,
-      term: 12,
-      status: 'Active',
-      type: 'dashboard'
-    },
-    {
-      id: 'AL-3310',
-      amount: 1200,
-      interestRate: 11.2,
-      term: 6,
-      status: 'Paid',
-      type: 'dashboard'
-    }
-  ];
+    // Load user loans from storage and mix with some mocks
+    const savedUserLoans = JSON.parse(localStorage.getItem('algoLendUserLoans')) || [];
+    const mockLoans = [
+      { id: 'AL-9284', amount: 45000, interestRate: 8.5, term: 12, status: 'Active', type: 'dashboard' },
+      { id: 'AL-3310', amount: 12000, interestRate: 11.2, term: 6, status: 'Paid', type: 'dashboard' }
+    ];
+    setUserLoans([...savedUserLoans, ...mockLoans]);
+  }, [navigate]);
+
 
   return (
     <Container className="py-4">
@@ -66,7 +62,7 @@ const Dashboard = () => {
       </div>
 
       <Row className="g-4">
-        {myLoans.map((loan, idx) => (
+        {userLoans.map((loan, idx) => (
           <Col md={6} xl={4} key={idx}>
             <LoanCard {...loan} />
           </Col>
