@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { Wallet } from 'lucide-react';
+import logo from '../assets/algolend-logo.svg';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,9 +31,8 @@ const Login = () => {
       <Row className="justify-content-center">
         <Col md={6} lg={5}>
           <div className="text-center mb-4">
-            <Link to="/" className="text-decoration-none text-primary d-inline-flex align-items-center fw-bold fs-3">
-              <Wallet className="me-2" size={32} />
-              AlgoLend
+            <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
+              <img src={logo} alt="AlgoLend Logo" height="48" />
             </Link>
           </div>
           <Card className="border-0 shadow-lg rounded-5 overflow-hidden">

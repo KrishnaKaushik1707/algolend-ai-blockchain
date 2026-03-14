@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { Wallet } from 'lucide-react';
+import logo from '../assets/algolend-logo.svg';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -41,9 +41,8 @@ const Register = () => {
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
           <div className="text-center mb-4">
-            <Link to="/" className="text-decoration-none text-primary d-inline-flex align-items-center fw-bold fs-3">
-              <Wallet className="me-2" size={32} />
-              AlgoLend
+            <Link to="/" className="text-decoration-none d-inline-flex align-items-center">
+              <img src={logo} alt="AlgoLend Logo" height="48" />
             </Link>
           </div>
           <Card className="border-0 shadow-lg rounded-5 overflow-hidden">
@@ -82,8 +81,8 @@ const Register = () => {
                 <h6 className="fw-bold mb-3 text-muted">Financial Information</h6>
 
                 <Form.Group className="mb-3">
-                  <Form.Label className="fw-semibold small">Annual Income (₹)</Form.Label>
-                  <Form.Control type="number" name="income" placeholder="500000" value={formData.income} onChange={handleChange} className="rounded-3" required />
+                  <Form.Label className="fw-semibold small">Annual Income ($)</Form.Label>
+                  <Form.Control type="number" name="income" placeholder="50000" value={formData.income} onChange={handleChange} className="rounded-3" required />
                 </Form.Group>
 
                 <Form.Group className="mb-4">

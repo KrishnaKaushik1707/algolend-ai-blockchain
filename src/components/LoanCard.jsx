@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button, Badge } from 'react-bootstrap';
-import { CalendarDays, IndianRupee, Percent } from 'lucide-react';
+import { CalendarDays, DollarSign, Percent } from 'lucide-react';
 
 const LoanCard = ({ id, amount, interestRate, term, status, borrowerName, type = 'marketplace' }) => {
   const isMarketplace = type === 'marketplace';
@@ -34,8 +34,8 @@ const LoanCard = ({ id, amount, interestRate, term, status, borrowerName, type =
         )}
 
         <div className="d-flex align-items-baseline mb-4">
-          <IndianRupee size={24} className="text-primary me-1" />
-          <h2 className="mb-0 fw-bold">{amount.toLocaleString('en-IN')}</h2>
+          <DollarSign size={24} className="text-primary me-1" />
+          <h2 className="mb-0 fw-bold">{amount.toLocaleString()}</h2>
         </div>
 
         <div className="d-flex justify-content-between mb-4 bg-light p-3 rounded-3">

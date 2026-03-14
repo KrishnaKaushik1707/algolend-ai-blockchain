@@ -29,8 +29,8 @@ const Dashboard = () => {
     // Load user loans from storage and mix with some mocks
     const savedUserLoans = JSON.parse(localStorage.getItem('algoLendUserLoans')) || [];
     const mockLoans = [
-      { id: 'AL-9284', amount: 45000, interestRate: 8.5, term: 12, status: 'Active', type: 'dashboard' },
-      { id: 'AL-3310', amount: 12000, interestRate: 11.2, term: 6, status: 'Paid', type: 'dashboard' }
+      { id: 'AL-9284', amount: 4500, interestRate: 8.5, term: 12, status: 'Active', type: 'dashboard' },
+      { id: 'AL-3310', amount: 1200, interestRate: 11.2, term: 6, status: 'Paid', type: 'dashboard' }
     ];
     setUserLoans([...savedUserLoans, ...mockLoans]);
   }, [navigate]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, IndianRupee, CalendarDays } from 'lucide-react';
+import { CheckCircle2, DollarSign, CalendarDays } from 'lucide-react';
 
 const RepayLoan = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const RepayLoan = () => {
              <CheckCircle2 size={48} />
           </div>
           <h2 className="fw-bold mb-3">Payment Successful!</h2>
-          <p className="text-muted lead mb-5">Your payment of ₹40,645 has been applied to Loan #AL-9284. Your next due date is Dec 15, 2026.</p>
+          <p className="text-muted lead mb-5">Your payment of $406.45 has been applied to Loan #AL-9284. Your next due date is Dec 15, 2026.</p>
           <Button href="/dashboard" variant="primary" size="lg" className="rounded-pill px-5 fw-bold shadow-sm">Return to Dashboard</Button>
         </Col>
       </Container>
@@ -48,7 +48,7 @@ const RepayLoan = () => {
                <Row className="align-items-center">
                  <Col xs={6}>
                    <h6 className="fw-bold text-uppercase mb-1">Due Amount</h6>
-                   <h2 className="fw-bold mb-0 d-flex align-items-center"><IndianRupee size={24} className="me-1" /> 40,645</h2>
+                   <h2 className="fw-bold mb-0 d-flex align-items-center"><DollarSign size={24} className="me-1" /> 406.45</h2>
                  </Col>
                  <Col xs={6} className="text-end">
                    <h6 className="text-dark opacity-75 text-uppercase mb-1 d-flex align-items-center justify-content-end"><CalendarDays size={16} className="me-1" /> Due Date</h6>
@@ -63,7 +63,7 @@ const RepayLoan = () => {
               </div>
               <div className="d-flex justify-content-between mb-2">
                  <span className="text-muted fw-semibold">Remaining Balance</span>
-                 <span className="fw-bold">₹3,65,412</span>
+                 <span className="fw-bold">$3,654.12</span>
               </div>
             </Card.Body>
           </Card>
@@ -95,7 +95,7 @@ const RepayLoan = () => {
                 </Alert>
 
                 <Button variant="primary" type="submit" size="lg" className="w-100 rounded-pill fw-bold py-3 mt-3 shadow-sm">
-                  Pay ₹40,645
+                  Pay $406.45
                 </Button>
               </Form>
             </Card.Body>
