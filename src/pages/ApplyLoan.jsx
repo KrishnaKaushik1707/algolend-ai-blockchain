@@ -194,11 +194,14 @@ const ApplyLoan = () => {
                       </Row>
                     </div>
 
-                    <Form.Check
-                      type="checkbox"
-                      label="I agree to the Terms and Conditions"
-                      required
-                    />
+                    <Form.Group className="mb-4 bg-light p-3 rounded-3 border">
+                      <Form.Check
+                        type="checkbox"
+                        label={<span className="ms-2 fw-medium text-dark">I agree to the Terms and Conditions</span>}
+                        required
+                        className="d-flex align-items-center m-0"
+                      />
+                    </Form.Group>
                   </>
                 )}
 
