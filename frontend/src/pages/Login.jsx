@@ -14,6 +14,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     try {
       const res = await axios.post(
         "https://algolend-backend.onrender.com/login",
@@ -29,6 +30,8 @@ const Login = () => {
       navigate("/dashboard");
     } catch (error) {
       alert("Login failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -108,7 +111,7 @@ const Login = () => {
                 <div className="position-relative mb-4 text-center">
                   <hr className="opacity-25 my-0" />
 
-                  <span className="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">
+                  <span className="position-absolute top-50 start-50 translate-middle bg-body px-3 text-body-secondary small">
                     or don't have an account?
                   </span>
                 </div>
