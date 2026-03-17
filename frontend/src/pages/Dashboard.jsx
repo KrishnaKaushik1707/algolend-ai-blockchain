@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserProfileCard from "../components/UserProfileCard";
 import CreditScoreCard from "../components/CreditScoreCard";
 import LoanCard from "../components/LoanCard";
@@ -71,12 +72,12 @@ const Dashboard = () => {
           <h3 className="fw-bold mb-0">My Loans</h3>
         </div>
 
-        <a
-          href="/apply-loan"
+        <Link
+          to="/apply-loan"
           className="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm"
         >
           Apply for New Loan
-        </a>
+        </Link>
       </div>
 
       {/* Active Loans */}

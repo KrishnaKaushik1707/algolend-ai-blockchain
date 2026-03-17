@@ -22,8 +22,9 @@ const ApplyLoan = () => {
   const [purpose, setPurpose] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    // The rest of the app uses algoLendUser as the "signed-in" signal
+    const savedUser = localStorage.getItem("algoLendUser");
+    if (!savedUser) {
       navigate("/login");
     }
   }, [navigate]);
@@ -46,13 +47,12 @@ const ApplyLoan = () => {
         duration: term,
       };
 
+      const token = localStorage.getItem("token");
       await axios.post(
         "https://algolend-backend.onrender.com/apply-loan",
         loanData,
         {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          headers: token ? { Authorization: `Bearer ${token}` } : undefined,
         },
       );
 
