@@ -23,14 +23,16 @@ const LoanMarketplace = () => {
     const fetchLoans = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:9000/loan-marketplace",
+          "https://algolend-backend.onrender.com",
         );
 
         console.log("API response:", response.data);
 
         // Handle both response formats
         if (Array.isArray(response.data)) {
-          setLoans(response.data.length > 0 ? response.data : defaultMarketplaceLoans);
+          setLoans(
+            response.data.length > 0 ? response.data : defaultMarketplaceLoans,
+          );
         } else if (Array.isArray(response.data.loans)) {
           setLoans(
             response.data.loans.length > 0
