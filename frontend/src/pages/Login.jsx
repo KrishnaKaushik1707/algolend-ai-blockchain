@@ -2,34 +2,34 @@ import React, { useState } from "react";
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/algolend-logo.svg";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simulate login by checking if user exists, else create mock user
-    const existingUser = localStorage.getItem("algoLendUser");
+    try {
+      const res = await axios.post(
+        "https://algolend-backend.onrender.com/login",
+        {
+          email,
+          password,
+        },
+      );
 
-    if (!existingUser) {
-      const mockUser = {
-        name: "Rahul Sharma",
-        email: email,
-        memberSince: new Date().toLocaleDateString("en-US", {
-          month: "short",
-          year: "numeric",
-        }),
-        phone: "Not provided",
-        location: "Not provided",
-      };
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("algoLendUser", JSON.stringify(res.data.user));
 
-      localStorage.setItem("algoLendUser", JSON.stringify(mockUser));
+      navigate("/dashboard");
+    } catch (error) {
+      alert("Login failed");
     }
-
-    navigate("/dashboard");
   };
 
   return (
@@ -55,6 +55,7 @@ const Login = () => {
               </div>
 
               <Form onSubmit={handleSubmit}>
+                {/* Email */}
                 <Form.Group className="mb-3">
                   <Form.Label className="fw-semibold small">
                     Email Address
@@ -70,13 +71,13 @@ const Login = () => {
                   />
                 </Form.Group>
 
+                {/* Password */}
                 <Form.Group className="mb-4">
                   <div className="d-flex justify-content-between align-items-center mb-1">
                     <Form.Label className="fw-semibold small mb-0">
                       Password
                     </Form.Label>
 
-                    {/* FIXED ISSUE HERE */}
                     <span className="small text-muted fw-medium">
                       Forgot Password?
                     </span>
@@ -92,15 +93,18 @@ const Login = () => {
                   />
                 </Form.Group>
 
+                {/* Login Button */}
                 <Button
                   variant="primary"
                   type="submit"
                   size="lg"
                   className="w-100 rounded-pill fw-bold mb-4 shadow-sm py-3"
+                  disabled={loading}
                 >
-                  Log In
+                  {loading ? "Logging in..." : "Log In"}
                 </Button>
 
+                {/* Divider */}
                 <div className="position-relative mb-4 text-center">
                   <hr className="opacity-25 my-0" />
 
@@ -109,6 +113,7 @@ const Login = () => {
                   </span>
                 </div>
 
+                {/* Register */}
                 <Button
                   as={Link}
                   to="/register"

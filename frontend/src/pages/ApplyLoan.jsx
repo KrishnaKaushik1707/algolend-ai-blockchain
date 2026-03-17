@@ -22,8 +22,8 @@ const ApplyLoan = () => {
   const [purpose, setPurpose] = useState("");
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("algoLendUser");
-    if (!savedUser) {
+    const token = localStorage.getItem("token");
+    if (!token) {
       navigate("/login");
     }
   }, [navigate]);
@@ -46,11 +46,20 @@ const ApplyLoan = () => {
         duration: term,
       };
 
-      await axios.post("http://localhost:9000/apply-loan", loanData);
+      await axios.post(
+        "https://algolend-backend.onrender.com/apply-loan",
+        loanData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      );
 
       setSuccess(true);
     } catch (error) {
       console.error("Loan submission failed:", error);
+      alert("Failed to apply loan");
     }
   };
 
@@ -155,7 +164,11 @@ const ApplyLoan = () => {
                         {[6, 12, 24].map((t) => (
                           <div
                             key={t}
-                            className={`flex-fill border rounded-3 p-3 cursor-pointer ${term === t ? "bg-primary bg-opacity-10 border-primary text-primary fw-bold" : "fw-semibold text-muted"}`}
+                            className={`flex-fill border rounded-3 p-3 cursor-pointer ${
+                              term === t
+                                ? "bg-primary bg-opacity-10 border-primary text-primary fw-bold"
+                                : "fw-semibold text-muted"
+                            }`}
                             onClick={() => setTerm(t)}
                           >
                             {t} Months
@@ -169,7 +182,7 @@ const ApplyLoan = () => {
                       className="d-flex align-items-center rounded-3"
                     >
                       <ShieldCheck size={28} className="me-3" />
-                      Expected APR:{" "}
+                      Expected APR:
                       <strong className="ms-2">7.5% - 10.5%</strong>
                     </Alert>
                   </>
@@ -179,24 +192,26 @@ const ApplyLoan = () => {
                   <>
                     <h5 className="fw-bold mb-4">Review Application</h5>
 
-                    <div className="surface p-4 rounded-4 mb-4">
+                    <div className="p-4 rounded-4 mb-4 bg-light">
                       <Row className="mb-2">
-                        <Col className="text-body-secondary">Amount</Col>
+                        <Col className="text-muted">Amount</Col>
                         <Col className="text-end fw-semibold">
                           ${Number(amount || 0).toLocaleString()}
                         </Col>
                       </Row>
                       <Row className="mb-2">
-                        <Col className="text-body-secondary">Purpose</Col>
+                        <Col className="text-muted">Purpose</Col>
                         <Col className="text-end fw-semibold">{purpose}</Col>
                       </Row>
                       <Row>
-                        <Col className="text-body-secondary">Term</Col>
-                        <Col className="text-end fw-semibold">{term} Months</Col>
+                        <Col className="text-muted">Term</Col>
+                        <Col className="text-end fw-semibold">
+                          {term} Months
+                        </Col>
                       </Row>
                     </div>
 
-                    <Form.Group className="mb-4 surface p-3 rounded-4">
+                    <Form.Group className="mb-4 p-3 rounded-4 bg-light">
                       <Form.Check
                         type="checkbox"
                         label={
@@ -205,7 +220,6 @@ const ApplyLoan = () => {
                           </span>
                         }
                         required
-                        className="d-flex align-items-center m-0 consent-check"
                       />
                     </Form.Group>
                   </>
