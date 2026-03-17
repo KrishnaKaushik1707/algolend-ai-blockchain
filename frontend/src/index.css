@@ -5,9 +5,115 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Light mode background: soft, premium gradients */
+  background:
+    radial-gradient(1100px 800px at 12% 0%, rgba(124, 58, 237, 0.14), transparent 60%),
+    radial-gradient(900px 650px at 92% 10%, rgba(37, 99, 235, 0.12), transparent 62%),
+    radial-gradient(800px 520px at 80% 95%, rgba(6, 182, 212, 0.10), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(248, 250, 252, 1));
+  color: var(--bs-body-color);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Bootstrap 5.3 color mode support via data-bs-theme */
+[data-bs-theme="dark"] {
+  --bs-body-color: #e9ecef;
+  --bs-body-bg: #0b1220;
+}
+
+[data-bs-theme="dark"] body {
+  background: radial-gradient(1200px 800px at 10% 0%, rgba(13, 110, 253, 0.25), transparent 55%),
+    radial-gradient(900px 600px at 90% 10%, rgba(32, 201, 151, 0.18), transparent 60%),
+    linear-gradient(180deg, rgba(10, 13, 18, 1), rgba(10, 13, 18, 1));
+}
+
+[data-bs-theme="dark"] .text-muted {
+  color: rgba(233, 236, 239, 0.72) !important;
+}
+
+.transition-hover {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.transition-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Nicer pills + buttons */
+.btn.rounded-pill {
+  letter-spacing: 0.2px;
+}
+
+/* Soft “glass” surface helper */
+.surface {
+  background: rgba(var(--bs-body-bg-rgb), 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--bs-border-color-rgb), 0.6);
+}
+
+/* Credit score card theme gradients */
+.credit-score-card {
+  background: radial-gradient(900px 420px at 15% 10%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, #7c3aed 0%, #2563eb 45%, #06b6d4 100%);
+  box-shadow: 0 1.25rem 3rem rgba(37, 99, 235, 0.22), 0 0.75rem 2rem rgba(124, 58, 237, 0.18);
+}
+[data-bs-theme="light"] .credit-score-card {
+  background: radial-gradient(900px 420px at 15% 10%, rgba(255, 255, 255, 0.35), transparent 55%),
+    linear-gradient(135deg, #f97316 0%, #ef4444 35%, #a855f7 100%);
+  box-shadow: 0 1.25rem 3rem rgba(239, 68, 68, 0.18), 0 0.75rem 2rem rgba(168, 85, 247, 0.14);
+}
+[data-bs-theme="dark"] .credit-score-card {
+  /* Keep the premium dark-mode gradient */
+  background: radial-gradient(900px 420px at 15% 10%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, #7c3aed 0%, #2563eb 45%, #06b6d4 100%);
+  box-shadow: 0 1.25rem 3rem rgba(37, 99, 235, 0.22), 0 0.75rem 2rem rgba(124, 58, 237, 0.18);
+}
+
+/* My Loans badge colors */
+.badge-pending {
+  background: rgba(99, 102, 241, 0.18) !important; /* indigo tint */
+  color: #4f46e5 !important;
+  border: 1px solid rgba(99, 102, 241, 0.35) !important;
+}
+[data-bs-theme="dark"] .badge-pending {
+  background: rgba(99, 102, 241, 0.22) !important;
+  color: #c7d2fe !important;
+  border-color: rgba(199, 210, 254, 0.25) !important;
+}
+.badge-active {
+  background: rgba(6, 182, 212, 0.18) !important; /* cyan tint */
+  color: #0891b2 !important;
+  border: 1px solid rgba(6, 182, 212, 0.35) !important;
+}
+[data-bs-theme="dark"] .badge-active {
+  background: rgba(6, 182, 212, 0.2) !important;
+  color: #a5f3fc !important;
+  border-color: rgba(165, 243, 252, 0.22) !important;
+}
+
+/* Apply Loan consent checkbox polish */
+.consent-check .form-check-input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0;
+  border-width: 2px;
+}
+.consent-check .form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+.consent-check .form-check-input:checked {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+[data-bs-theme="light"] .consent-check .form-check-input {
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+[data-bs-theme="dark"] .consent-check .form-check-input {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: rgba(233, 236, 239, 0.35);
 }

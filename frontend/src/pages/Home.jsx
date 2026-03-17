@@ -12,7 +12,7 @@ const Home = () => {
           <Row className="align-items-center p-4 p-md-5">
             <Col lg={6} className="mb-5 mb-lg-0">
               <Badge bg="primary" className="px-3 py-2 rounded-pill mb-3 shadow-sm bg-opacity-75">Revolutionizing Microloans</Badge>
-              <h1 className="display-4 fw-bold text-dark mb-4">
+              <h1 className="display-4 fw-bold mb-4">
                 Fast, Fair, and Transparent Financial Power
               </h1>
               <p className="lead text-muted mb-5 pe-lg-5">

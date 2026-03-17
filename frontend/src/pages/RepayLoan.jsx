@@ -51,8 +51,10 @@ const RepayLoan = () => {
                    <h2 className="fw-bold mb-0 d-flex align-items-center"><DollarSign size={24} className="me-1" /> 406.45</h2>
                  </Col>
                  <Col xs={6} className="text-end">
-                   <h6 className="text-dark opacity-75 text-uppercase mb-1 d-flex align-items-center justify-content-end"><CalendarDays size={16} className="me-1" /> Due Date</h6>
-                   <h5 className="text-dark fw-bold mb-0">Nov 15, 2026</h5>
+                   <h6 className="opacity-75 text-uppercase mb-1 d-flex align-items-center justify-content-end">
+                     <CalendarDays size={16} className="me-1" /> Due Date
+                   </h6>
+                   <h5 className="fw-bold mb-0">Nov 15, 2026</h5>
                  </Col>
                </Row>
             </div>
@@ -89,7 +91,10 @@ const RepayLoan = () => {
                   </div>
                 </Form.Group>
 
-                <Alert variant="secondary" className="border-0 bg-light rounded-3 text-muted small d-flex align-items-start py-3">
+                <Alert
+                  variant="secondary"
+                  className="border-0 bg-body-tertiary rounded-3 text-body-secondary small d-flex align-items-start py-3"
+                >
                   <CheckCircle2 size={16} className="text-success me-2 mt-1 flex-shrink-0" />
                   Your payment will be processed immediately. Setting up AutoPay can qualify you for a 0.25% interest rate reduction.
                 </Alert>

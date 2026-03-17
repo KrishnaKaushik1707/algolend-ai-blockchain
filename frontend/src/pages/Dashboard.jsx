@@ -51,7 +51,7 @@ const Dashboard = () => {
     <Container className="py-4">
       <div className="mb-4">
         <h2 className="fw-bold">Welcome back, {user.name.split(" ")[0]}!</h2>
-        <p className="text-muted">
+        <p className="text-body-secondary">
           Here is a summary of your financial profile and active loans.
         </p>
       </div>
@@ -83,8 +83,10 @@ const Dashboard = () => {
 
       <div className="d-flex align-items-center mb-4">
         <h5 className="fw-bold mb-0 me-3">Pending Loans</h5>
-        <div className="flex-grow-1 border-bottom border-warning opacity-50"></div>
-        <span className="badge bg-warning text-dark ms-3 rounded-pill px-3 py-2">{pendingLoans.length} Requests</span>
+        <div className="flex-grow-1 border-bottom opacity-25"></div>
+        <span className="badge badge-pending ms-3 rounded-pill px-3 py-2 fw-semibold">
+          {pendingLoans.length} Requests
+        </span>
       </div>
 
       <Row className="g-4 mb-5">
@@ -103,14 +105,16 @@ const Dashboard = () => {
             </Col>
           ))
         ) : (
-          <p className="text-muted">No pending loans</p>
+          <p className="text-body-secondary">No pending loans</p>
         )}
       </Row>
 
       <div className="d-flex align-items-center mb-4">
         <h5 className="fw-bold mb-0 me-3">Active Loans</h5>
-        <div className="flex-grow-1 border-bottom border-success opacity-50"></div>
-        <span className="badge bg-success ms-3 rounded-pill px-3 py-2">{activeLoans.length} Loans</span>
+        <div className="flex-grow-1 border-bottom opacity-25"></div>
+        <span className="badge badge-active ms-3 rounded-pill px-3 py-2 fw-semibold">
+          {activeLoans.length} Loans
+        </span>
       </div>
 
       <Row className="g-4 mb-5">
@@ -129,14 +133,14 @@ const Dashboard = () => {
             </Col>
           ))
         ) : (
-          <p className="text-muted">No active loans</p>
+          <p className="text-body-secondary">No active loans</p>
         )}
       </Row>
 
       {/* Paid Loans */}
 
       <div className="d-flex align-items-center mb-4 mt-5">
-        <h5 className="fw-bold mb-0 me-3 text-muted">Paid Loans</h5>
+        <h5 className="fw-bold mb-0 me-3 text-body-secondary">Paid Loans</h5>
         <div className="flex-grow-1 border-bottom opacity-25"></div>
         <span className="badge bg-secondary ms-3 rounded-pill px-3 py-2">{paidLoans.length} Completed</span>
       </div>
@@ -157,7 +161,7 @@ const Dashboard = () => {
             </Col>
           ))
         ) : (
-          <p className="text-muted">No paid loans</p>
+          <p className="text-body-secondary">No paid loans</p>
         )}
       </Row>
     </Container>

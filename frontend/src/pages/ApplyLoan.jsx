@@ -102,7 +102,7 @@ const ApplyLoan = () => {
                         Requested Amount
                       </Form.Label>
                       <div className="input-group">
-                        <span className="input-group-text bg-light border-end-0 text-muted">
+                        <span className="input-group-text bg-body-tertiary border-end-0 text-primary">
                           <DollarSign size={18} />
                         </span>
                         <Form.Control
@@ -179,27 +179,33 @@ const ApplyLoan = () => {
                   <>
                     <h5 className="fw-bold mb-4">Review Application</h5>
 
-                    <div className="bg-light p-4 rounded-3 mb-4">
+                    <div className="surface p-4 rounded-4 mb-4">
                       <Row className="mb-2">
-                        <Col>Amount</Col>
-                        <Col className="text-end">${amount}</Col>
+                        <Col className="text-body-secondary">Amount</Col>
+                        <Col className="text-end fw-semibold">
+                          ${Number(amount || 0).toLocaleString()}
+                        </Col>
                       </Row>
                       <Row className="mb-2">
-                        <Col>Purpose</Col>
-                        <Col className="text-end">{purpose}</Col>
+                        <Col className="text-body-secondary">Purpose</Col>
+                        <Col className="text-end fw-semibold">{purpose}</Col>
                       </Row>
                       <Row>
-                        <Col>Term</Col>
-                        <Col className="text-end">{term} Months</Col>
+                        <Col className="text-body-secondary">Term</Col>
+                        <Col className="text-end fw-semibold">{term} Months</Col>
                       </Row>
                     </div>
 
-                    <Form.Group className="mb-4 bg-light p-3 rounded-3 border">
+                    <Form.Group className="mb-4 surface p-3 rounded-4">
                       <Form.Check
                         type="checkbox"
-                        label={<span className="ms-2 fw-medium text-dark">I agree to the Terms and Conditions</span>}
+                        label={
+                          <span className="ms-2 fw-semibold">
+                            I agree to the Terms and Conditions
+                          </span>
+                        }
                         required
-                        className="d-flex align-items-center m-0"
+                        className="d-flex align-items-center m-0 consent-check"
                       />
                     </Form.Group>
                   </>

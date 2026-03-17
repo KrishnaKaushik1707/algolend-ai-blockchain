@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Form, Badge } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import LoanCard from "../components/LoanCard";
 import { Search, SlidersHorizontal } from "lucide-react";
@@ -66,53 +66,41 @@ const LoanMarketplace = () => {
           className="d-flex gap-2 w-100 flex-md-grow-0"
           style={{ maxWidth: "400px" }}
         >
-          <div className="input-group bg-white rounded-pill shadow-sm overflow-hidden border">
-            <span className="input-group-text bg-white border-0 text-muted ps-3">
+          <div className="input-group bg-body-tertiary rounded-pill shadow-sm overflow-hidden border">
+            <span className="input-group-text bg-body-tertiary border-0 text-body-secondary ps-3">
               <Search size={18} />
             </span>
 
             <Form.Control
               type="text"
               placeholder="Search loans..."
-              className="border-0 shadow-none"
+              className="border-0 shadow-none bg-body-tertiary text-body"
             />
           </div>
 
-          <button className="btn btn-outline-secondary rounded-pill d-flex align-items-center px-3 shadow-sm bg-white">
-            <SlidersHorizontal size={18} />
+          <button className="btn btn-outline-secondary rounded-pill d-flex align-items-center px-3 shadow-sm bg-body-tertiary text-body">
+            <SlidersHorizontal size={18} className="text-body-secondary" />
           </button>
         </div>
       </div>
 
       {/* Filters */}
       <div className="mb-4 d-flex gap-2 flex-wrap">
-        <Badge bg="primary" className="p-2 px-3 rounded-pill fw-medium">
+        <span className="badge bg-primary p-2 px-3 rounded-pill fw-medium shadow-sm">
           All Loans
-        </Badge>
+        </span>
 
-        <Badge
-          bg="light"
-          text="dark"
-          className="border p-2 px-3 rounded-pill fw-medium text-muted"
-        >
+        <span className="badge bg-body-tertiary text-body border p-2 px-3 rounded-pill fw-medium">
           Low Risk
-        </Badge>
+        </span>
 
-        <Badge
-          bg="light"
-          text="dark"
-          className="border p-2 px-3 rounded-pill fw-medium text-muted"
-        >
+        <span className="badge bg-body-tertiary text-body border p-2 px-3 rounded-pill fw-medium">
           Moderate Risk
-        </Badge>
+        </span>
 
-        <Badge
-          bg="light"
-          text="dark"
-          className="border p-2 px-3 rounded-pill fw-medium text-muted"
-        >
+        <span className="badge bg-body-tertiary text-body border p-2 px-3 rounded-pill fw-medium">
           Short Term
-        </Badge>
+        </span>
       </div>
 
       {/* Loan Cards */}
