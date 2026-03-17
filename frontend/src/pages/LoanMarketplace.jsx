@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import LoanCard from "../components/LoanCard";
 import { Search, SlidersHorizontal } from "lucide-react";
 import axios from "axios";
-import { defaultMarketplaceLoans } from "../data/defaultLoans";
 
 const LoanMarketplace = () => {
   const navigate = useNavigate();
@@ -23,28 +22,15 @@ const LoanMarketplace = () => {
     const fetchLoans = async () => {
       try {
         const response = await axios.get(
-          "https://algolend-backend.onrender.com",
+          "https://algolend-backend.onrender.com/loan-marketplace",
         );
 
-        console.log("API response:", response.data);
+        console.log("Marketplace Loans:", response.data);
 
-        // Handle both response formats
-        if (Array.isArray(response.data)) {
-          setLoans(
-            response.data.length > 0 ? response.data : defaultMarketplaceLoans,
-          );
-        } else if (Array.isArray(response.data.loans)) {
-          setLoans(
-            response.data.loans.length > 0
-              ? response.data.loans
-              : defaultMarketplaceLoans,
-          );
-        } else {
-          setLoans(defaultMarketplaceLoans);
-        }
+        setLoans(response.data);
       } catch (error) {
         console.error("Failed to fetch loans:", error);
-        setLoans(defaultMarketplaceLoans);
+        setLoans([]);
       }
     };
 
@@ -79,37 +65,18 @@ const LoanMarketplace = () => {
           </div>
 
           <button className="btn btn-outline-secondary rounded-pill d-flex align-items-center px-3 shadow-sm bg-body-tertiary text-body">
-            <SlidersHorizontal size={18} className="text-body-secondary" />
+            <SlidersHorizontal size={18} />
           </button>
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="mb-4 d-flex gap-2 flex-wrap">
-        <span className="badge bg-primary p-2 px-3 rounded-pill fw-medium shadow-sm">
-          All Loans
-        </span>
-
-        <span className="badge bg-body-tertiary text-body border p-2 px-3 rounded-pill fw-medium">
-          Low Risk
-        </span>
-
-        <span className="badge bg-body-tertiary text-body border p-2 px-3 rounded-pill fw-medium">
-          Moderate Risk
-        </span>
-
-        <span className="badge bg-body-tertiary text-body border p-2 px-3 rounded-pill fw-medium">
-          Short Term
-        </span>
-      </div>
-
       {/* Loan Cards */}
       <Row className="g-4">
-        {Array.isArray(loans) && loans.length > 0 ? (
+        {loans.length > 0 ? (
           loans.map((loan, idx) => (
             <Col md={6} xl={4} key={idx}>
               <LoanCard
-                id={loan._id || loan.id}
+                id={loan._id}
                 borrowerName={loan.borrower}
                 amount={loan.amount}
                 term={loan.duration}
